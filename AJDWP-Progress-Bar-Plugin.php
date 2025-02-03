@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: AJDWP-Progress-Bar-Plugin
-Description: Creates an admin menu for managing course steps and displays a clickable progress bar via shortcode. Supports adding, deleting, drag‐and‐drop reordering, and a nickname option that shows the full title on hover.
+Description: Creates an admin menu for managing course steps and displays a clickable progress bar via shortcode [progress_bar]. Supports adding, deleting, drag‐and‐drop reordering, and a nickname option that shows the full title on hover.
 Version: 250203
 Author: Arash Javadi
 */
