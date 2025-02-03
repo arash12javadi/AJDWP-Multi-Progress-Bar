@@ -20,13 +20,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_action('admin_menu', 'cpb_add_admin_menu');
 function cpb_add_admin_menu() {
     add_menu_page(
-        'Progress Steps',                   // Page title
-        'AJDWP Progress Bar',               // Menu title
-        'manage_options',                   // Capability
-        'progress-bar',                     // Menu slug
-        'cpb_admin_page',                   // Callback function
-        'dashicons-schedule',               // Icon
-        80                                  // Position
+        'Course Progress Steps',         // Page title
+        'AJDWP Course Progress',         // Menu title
+        'manage_options',                // Capability
+        'course-progress',               // Menu slug
+        'cpb_admin_page',                // Callback function
+        'dashicons-schedule',            // Icon
+        80                               // Position
     );
 }
 
@@ -36,13 +36,12 @@ function cpb_register_settings() {
     register_setting('cpb_options_group', 'cpb_steps');
 }
 
-// Enqueue jQuery UI Sortable (WordPress already includes jQuery UI in admin)
+// Enqueue jQuery UI Sortable (adjusted to load on our admin page)
 add_action('admin_enqueue_scripts', 'cpb_admin_enqueue');
 function cpb_admin_enqueue($hook) {
-    if ($hook != 'toplevel_page_course-progress') {
-        return;
+    if ( isset($_GET['page']) && in_array($_GET['page'], array('course-progress', 'progress-bar')) ) {
+         wp_enqueue_script('jquery-ui-sortable');
     }
-    wp_enqueue_script('jquery-ui-sortable');
 }
 
 function cpb_admin_page() {
@@ -59,6 +58,8 @@ function cpb_admin_page() {
                 $link = isset($_POST['step_link'][$index]) ? esc_url_raw($_POST['step_link'][$index]) : '';
                 $nickname = isset($_POST['step_nickname'][$index]) ? sanitize_text_field($_POST['step_nickname'][$index]) : '';
                 $title = sanitize_text_field($title);
+                // Only save the step if both the title and link are not empty.
+                // If you want to save steps even if one field is empty, remove or adjust this condition.
                 if (!empty($title) && !empty($link)) {
                     $steps[] = array(
                         'title'    => $title,
@@ -76,7 +77,7 @@ function cpb_admin_page() {
     $steps = get_option('cpb_steps', array());
     ?>
     <div class="wrap">
-        <h1>Draggable Steps Creation</h1>
+        <h1>Course Progress Steps</h1>
         <form method="post" action="">
             <?php wp_nonce_field('cpb_save_steps', 'cpb_nonce'); ?>
             <table class="wp-list-table widefat fixed striped" id="cpb_steps_table">
@@ -193,8 +194,6 @@ function cpb_progress_bar_shortcode() {
         }
     }
     // Calculate overall progress.
-    // For example, with 4 steps the progress is:
-    // active step 0 = ((0+1)/4)*100 = 25%, 1 = ((1+1)/4)*100 = 50%, etc.
     $overall_progress = ($total > 0) ? round((($active_index + 1) / $total) * 100) : 0;
     
     ob_start();
