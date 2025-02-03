@@ -1,2 +1,2 @@
-use this shortcode on the top of the selected pages on the progress bar list:
+Use this shortcode on the top of the selected pages:
 [progress_bar]
