@@ -1,0 +1,62 @@
+/* ------------------- Backend styles ------------------- */
+.ajdwp-sortable-placeholder {
+  background: #f0f0f0;
+  height: 40px;
+}
+
+.ajdwp-step-backend {
+  cursor: move;
+}
+
+/* ------------------- Frontend styles ------------------- */
+/* 
+colors:
+1- #FCF080 -> Light yellow background
+2- #560ca5 -> Purple text
+*/
+
+.ajdwp-progress-wrapper {
+  margin: 20px 0;
+}
+
+.ajdwp-progress-container {
+  background: #e0e0e0;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.ajdwp-progress-filled {
+  background: #560ca5;
+  height: 100%;
+  transition: width 0.5s ease-in-out;
+}
+
+.ajdwp-steps {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ajdwp-step {
+  flex: 1;
+  text-align: center;
+}
+
+.ajdwp-step a {
+  text-decoration: none;
+  color: #560ca5;
+}
+
+.ajdwp-active {
+  font-weight: bold;
+}
+.ajdwp-active a {
+  font-weight: bold;
+  border: 1px solid;
+  border-radius: 50px;
+  padding: 0px 10px;
+}
