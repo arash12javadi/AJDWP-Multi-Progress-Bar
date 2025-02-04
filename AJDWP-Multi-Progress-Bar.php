@@ -2,7 +2,7 @@
 /*
 Plugin Name: AJDWP-Multi-Progress-Bar-Plugin
 Description: Manage multiple progress bars on your site. Create/edit/delete progress bars (each with multiple steps), assign one to posts/pages via a meta box and custom column, and use a bulk action with an inline dropdown to add posts to a progress bar (which also appends the post title and view link as a new step). Use the [progress_bar] shortcode (or [progress_bar course="course-key"]) to display the progress bar.
-Version: 250203
+Version: 250204
 Author: Arash Javadi
 */
 
