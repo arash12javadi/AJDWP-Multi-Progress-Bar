@@ -146,7 +146,7 @@ function ajdwp_progress_admin_page() {
                    <tbody id="ajdwp_steps_body">
                         <?php if ( ! empty($steps) ) : ?>
                              <?php foreach ( $steps as $step ) : ?>
-                             <tr class="ajdwp_step">
+                             <tr class="ajdwp-step-backend">
                                   <td><input type="text" name="step_title[]" value="<?php echo esc_attr($step['title']); ?>" /></td>
                                   <td><input type="text" name="step_nickname[]" value="<?php echo esc_attr($step['nickname']); ?>" placeholder="Optional (will use full title if empty)" /></td>
                                   <td><input type="text" name="step_link[]" value="<?php echo esc_attr($step['link']); ?>" /></td>

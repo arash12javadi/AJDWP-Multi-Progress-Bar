@@ -36,20 +36,22 @@ function ajdwp_progress_bar_shortcode( $atts ) {
     $overall_progress = ($total > 0) ? round((($active_index + 1) / $total) * 100) : 0;
     ob_start();
     ?>
-    <div class="ajdwp-progress-wrapper" style="margin:20px 0;">
-         <div class="ajdwp-progress-container" style="background:#e0e0e0; width:100%; height:10px; border-radius:5px; overflow:hidden;">
-              <div class="ajdwp-progress-filled" style="background:#0073aa; height:100%; width:<?php echo $overall_progress; ?>%; transition:width 0.5s ease-in-out;"></div>
+    <div class="ajdwp-progress-wrapper" >
+         <div class="ajdwp-progress-container" >
+              <div class="ajdwp-progress-filled" style=" width:<?php echo $overall_progress; ?>%; "></div>
          </div>
-         <ul class="ajdwp-steps" style="list-style:none; padding:0; margin:10px 0 0; display:flex; justify-content:space-between;">
+         <ul class="ajdwp-steps">
               <?php foreach ( $steps as $step ) :
                     $display_text = ! empty($step['nickname']) ? $step['nickname'] : $step['title'];
                     $active_class = ( untrailingslashit($step['link']) === $current_url ) ? ' ajdwp-active' : '';
               ?>
-              <li class="ajdwp-step<?php echo $active_class; ?>" style="flex:1; text-align:center;">
-                   <a href="<?php echo esc_url($step['link']); ?>" title="<?php echo esc_attr($step['title']); ?>" style="text-decoration:none; color:#0073aa; font-weight:bold;">
-                        <?php echo esc_html($display_text); ?>
-                   </a>
-              </li>
+                    <li class="ajdwp-step<?php echo esc_attr($active_class); ?>" >
+                    <a href="<?php echo esc_url($step['link']); ?>" 
+                         title="<?php echo esc_attr($step['title']); ?>" 
+                         aria-label="<?php echo 'progress bar link to ' . esc_attr($step['title']); ?>">
+                         <?php echo esc_html($display_text); ?>
+                    </a>
+                    </li>
               <?php endforeach; ?>
          </ul>
     </div>
